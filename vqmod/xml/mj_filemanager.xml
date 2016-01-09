@@ -1,0 +1,60 @@
+<modification>
+	<id>MJ File manager</id>
+	<name></name>
+	<code>mjfilemanager</code>
+	<version>1.1</version>
+	<vqmver>2.5.0</vqmver>
+	<author>Mehdi Jalilvand</author>
+	<link>http://www.kitkatweb.com</link>
+	<file name="admin/view/template/common/filemanager.tpl">
+		<operation>
+			<search position="after"><![CDATA[class="directory"]]></search>
+			<add><![CDATA[
+<a class="thumbnail_dir" href="<?php echo $image['path']; ?>">Select</a>
+			]]></add>
+	
+		</operation>
+	
+		<operation>
+			
+			<search  position="after" index="1"><![CDATA[<?php if ($target) { ?>]]></search>
+			<add><![CDATA[
+$('a.thumbnail_dir').on('click', function(e) {
+	e.preventDefault();
+	if($('#<?php echo $target; ?>').attr('type')!='text') return;
+	<?php if ($thumb) { ?>
+	$('#<?php echo $thumb; ?>').find('img').attr('src', $(this).find('img').attr('src'));
+	
+	<?php } ?>
+	$('#<?php echo $target; ?>').attr('value', $(this).parent().find('input').attr('value'));
+	
+	$('#<?php echo $target; ?>').attr('type','text');
+
+	$('#modal-image').modal('hide');
+});
+			]]></add>	
+		</operation>
+	
+	<operation>
+			<search offset="1" position="after"><![CDATA[var endOffset = range.endOffset;]]></search>
+			<add><![CDATA[
+$('a.thumbnail_dir').on('click', function(e) {
+	e.preventDefault();
+
+    // Create a new range from the orginal selection
+    var range = document.createRange();
+    range.setStart(node, startOffset);
+    range.setEnd(node, endOffset);
+
+    var img = document.createElement('span');
+	img.text($(this).attr('href'));
+
+	range.insertNode(img);
+
+	$('#modal-image').modal('hide');
+});
+			]]></add>	
+		</operation>	
+	
+	</file>
+</modification>
