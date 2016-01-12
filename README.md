@@ -7,3 +7,14 @@ An vqmod extension to add functionality of selecting directory instead of images
 						<input type="text" name="images_url" value="<?php echo $images_url; ?>" id="input-images_url" />
 					</div>				
 				</div>
+#You must do a small wrok on this files:
+admin/view/javascript/common.js
+and
+admin/view/javascript/common-rtl.js
+
+find:
+#url: 'index.php?route=common/filemanager&token=' + getURLVar('token') + '&target=' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id'),
+replace with:
+#url: 'index.php?route=common/filemanager&token=' + getURLVar('token') + '&target=' + $(element).parent().find('input').attr('id') + '&thumb=' + $(element).attr('id')+'&directory='+$(element).parent().find('input').val() ,
+
+
