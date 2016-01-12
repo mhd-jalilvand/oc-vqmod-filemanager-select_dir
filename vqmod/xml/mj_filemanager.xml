@@ -2,7 +2,7 @@
 	<id>MJ File manager</id>
 	<name></name>
 	<code>mjfilemanager</code>
-	<version>1.2</version>
+	<version>1.3</version>
 	<vqmver>2.5.0</vqmver>
 	<author>Mehdi Jalilvand</author>
 	<link>http://www.kitkatweb.com</link>
@@ -99,7 +99,7 @@ if(substr($this->request->get['directory'],0,8)=='catalog/')
 		<operation>
 			<search position="after"><![CDATA[class="directory"]]></search>
 			<add><![CDATA[
-<a class="thumbnail_dir" href="<?php echo $image['path']; ?>">انتخاب</a>
+<a class="thumbnail_dir" href="<?php echo $image['path']; ?>"><span class="fa fa-check" aria-hidden="true"></span></a>
 			]]></add>
 	
 		</operation>
